@@ -1,0 +1,92 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "React",
+            "type": "npm",
+            "script": "webpack",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": true,
+                "group": "groupA"
+            },
+            "promptOnClose": false
+        },
+        {
+            "label": "nodemon",
+            "type": "npm",
+            "script": "nodemon",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": true,
+                "group": "groupA"
+            },
+            "promptOnClose": false,
+            "dependsOrder": "parallel"
+        },
+        {
+            "label": "RUN",
+            "dependsOn": [
+                "React",
+                "nodemon",
+                "Open Chrome"
+            ],
+            "dependsOrder": "parallel",
+            "type": "shell",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true,
+            },
+            "promptOnClose": false,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "npm",
+            "script": "dev",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Open Chrome",
+            "type": "shell",
+            "isBackground": true,
+            "windows": {
+                "command": "timeout 7 && explorer \"http://localhost:3456\"",
+            },
+            "linux": {
+                "command": "sleep 7 && google-chrome http://localhost:3456"
+            },
+            "osx":{
+                "command": "open http://localhost:3456"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "watch": [
+        "src"
+    ],
+    "exclude": [
+        "src/view"
+    ],
+    "delay": "2500"
+}

@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "tool.qtNuocNgoai.js",
+            "program": "${workspaceFolder}/asset/tool/tool.qtNuocNgoai.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug",
+            "windows": {
+                "program": "${workspaceFolder}\\oisp.web.js"
+            },
+            "linux": {
+                "program": "${workspaceFolder}/oisp.web.js"
+            },
+            "osx": {
+                "program": "${workspaceFolder}\\oisp.web.js"
+            }
+        }
+    ]
+}
