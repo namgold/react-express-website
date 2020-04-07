@@ -4,8 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('../controller/index');
+var usersRouter = require('../controller/users');
 
 var app = express();
 
@@ -18,6 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", process.env.HOST + ":" + process.env.PORT);
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -37,5 +41,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.get('*', (err, req, res) => {
+    res.send("invalid")
+})
 
 module.exports = app;

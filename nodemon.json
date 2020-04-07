@@ -1,9 +1,10 @@
 {
     "watch": [
-        "src"
+        "src",
+        "package.json",
+        ".env"
     ],
-    "exclude": [
+    "ignore": [
         "src/view"
-    ],
-    "delay": "2500"
+    ]
 }

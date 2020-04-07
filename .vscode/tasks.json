@@ -61,19 +61,14 @@
             }
         },
         {
-            "type": "npm",
-            "script": "dev",
-            "problemMatcher": [],
-        },
-        {
             "label": "Open Chrome",
             "type": "shell",
             "isBackground": true,
             "windows": {
-                "command": "timeout 7 && explorer \"http://localhost:3456\"",
+                "command": "explorer \"http://localhost:3456\""
             },
             "linux": {
-                "command": "sleep 7 && google-chrome http://localhost:3456"
+                "command": "google-chrome http://localhost:3456"
             },
             "osx":{
                 "command": "open http://localhost:3456"

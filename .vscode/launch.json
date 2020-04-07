@@ -4,11 +4,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "tool.qtNuocNgoai.js",
-            "program": "${workspaceFolder}/asset/tool/tool.qtNuocNgoai.js",
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
+            "name": "webpack",
+            "program": "${workspaceFolder}/scripts/start.js",
         },
         {
             "type": "node",
