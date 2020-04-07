@@ -4,21 +4,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "webpack",
-            "program": "${workspaceFolder}/scripts/start.js",
-        },
-        {
-            "type": "node",
-            "request": "launch",
             "name": "Debug",
             "windows": {
-                "program": "${workspaceFolder}\\oisp.web.js"
+                "program": "${workspaceFolder}\\src\\bin\\www"
             },
             "linux": {
-                "program": "${workspaceFolder}/oisp.web.js"
+                "program": "${workspaceFolder}/src/bin/www"
             },
             "osx": {
-                "program": "${workspaceFolder}\\oisp.web.js"
+                "program": "${workspaceFolder}\\src\\bin\\www"
             }
         }
     ]
