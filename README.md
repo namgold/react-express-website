@@ -4,7 +4,8 @@ This is the boilerplate website for [ReactJS](https://reactjs.org/), [ExpressJS]
 
 ## Features
 
-Includes
+Project included:
+
 - Ejected create-react-app
 - express-generator
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -12,8 +13,12 @@ Includes
 - [JQuery](https://jquery.com)
 - [lodash](https://lodash.com)
 - [swal2](https://sweetalert2.github.io)
-- socket.io
 - [nodemon](https://www.npmjs.com/package/nodemon)
 - Many ultility function ready to use
 - .env config file
 - Ready to used vscode config
+
+## Todo
+
+- Add support Redux
+- Add support socket.io
