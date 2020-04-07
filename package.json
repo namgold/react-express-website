@@ -2,9 +2,9 @@
     "name": "react-express-website",
     "version": "0.1.0",
     "private": true,
-    "main": "src/bin/www.js",
+    "main": "src/bin/www",
     "scripts": {
-        "nodemon": "nodemon -r dotenv/config src/bin/www.js",
+        "nodemon": "nodemon -r dotenv/config src/bin/www",
         "webpack": "node scripts/start.js",
         "build": "node scripts/build.js",
         "test": "node scripts/test.js"

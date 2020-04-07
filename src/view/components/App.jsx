@@ -4,10 +4,13 @@ import '../css/App.css';
 import T from '../js/common';
 
 class App extends React.Component {
-    state = {}
+    state = { apiMessage: null }
 
     componentDidMount() {
-        T.get("/",data => this.setState({data}));
+        T.get("/", data =>
+            this.setState({ apiMessage: "API connect success" }),
+            error =>
+                this.setState({ apiMessage: "API connect fail" }));
     }
 
     render() {
@@ -15,8 +18,8 @@ class App extends React.Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <p>Edit <code>src/App.js</code> and save to reload.</p>
-                    {this.state.data ? <p>{this.state.data.data}</p> : null}
+                    <p>Edit <code>src/view/components/App.js</code> and save to reload.</p>
+                    {this.state.apiMessage ? <p>{this.state.apiMessage}</p> : null}
                     <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">Learn React</a>
                 </header>
             </div>

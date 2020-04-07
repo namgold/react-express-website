@@ -1,6 +1,12 @@
-# ReactJS-ExpressJS template website
+# ReactJS - ExpressJS boilerplate website
 
-This is the boilerplate website for [ReactJS](https://reactjs.org/), [ExpressJS](https://expressjs.com) created by [create-react-app](https://create-react-app.dev) and [express-generator](https://expressjs.com/en/starter/generator.html).
+This is the boilerplate website for [ReactJS](https://reactjs.org/), [ExpressJS](https://expressjs.com) created by combined [create-react-app](https://create-react-app.dev) and [express-generator](https://expressjs.com/en/starter/generator.html).
+
+## Quick start
+
+On Visual Studio Code: simplly press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>.
+
+On terminal/cmd: run `npm run webpack` and `npm run nodemon`.
 
 ## Features
 
