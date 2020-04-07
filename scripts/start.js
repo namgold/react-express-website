@@ -41,14 +41,14 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // Tools like Cloud9 rely on this.
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
-const HOST = process.env.HOST || '0.0.0.0';
+const DEFAULT_PORT = parseInt(process.env.REACT_PORT, 10) || 3000;
+const HOST = process.env.REACT_HOST || '0.0.0.0';
 
-if (process.env.HOST) {
+if (process.env.REACT_HOST) {
   console.log(
     chalk.cyan(
       `Attempting to bind to HOST environment variable: ${chalk.yellow(
-        chalk.bold(process.env.HOST)
+        chalk.bold(process.env.REACT_HOST)
       )}`
     )
   );

@@ -14,9 +14,7 @@ const T = {
 
     isBKer: (email) => { return email.endsWith('@hcmut.edu.vn') || email.endsWith('@oisp.edu.vn') },
 
-    url: (url) => //process.env.REACT_APP_API_HOST + ':' + process.env.REACT_APP_API_PORT
-        'http://localhost:3457'
-        + url + (url.indexOf('?') === -1 ? '?t=' : '&t=') + new Date().getTime(),
+    url: (url) => process.env.REACT_APP_API_URL + url + (url.indexOf('?') === -1 ? '?t=' : '&t=') + new Date().getTime(),
 
     download: (url, fileName) => {
         let link = document.createElement('a');
