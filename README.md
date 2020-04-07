@@ -23,6 +23,7 @@ Project included:
 - Many ultility function ready to used
 - .env config file
 - Ready to used vscode config
+- Connected React - Express app
 
 ## Todo
 
