@@ -14,6 +14,7 @@ Project included:
 
 - Ejected [create-react-app](https://create-react-app.dev)
 - [express-generator](https://expressjs.com/en/starter/generator.html)
+- Connected React - Express app
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - [React Loadable](https://github.com/jamiebuilds/react-loadable)
 - [JQuery](https://jquery.com)
@@ -23,7 +24,6 @@ Project included:
 - Many ultility function ready to used
 - .env config file
 - Ready to used vscode config
-- Connected React - Express app
 
 ## Todo
 
