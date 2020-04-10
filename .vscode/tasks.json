@@ -39,7 +39,7 @@
             "label": "RUN",
             "dependsOn": [
                 "React",
-                "nodemon",
+                "API",
                 "Open Chrome"
             ],
             "dependsOrder": "parallel",
