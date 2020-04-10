@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 // import io from 'socket.io-client';
 import dateformat from 'dateformat';
 const $ = window.$;
+const Swal = window.Swal;
 
 const T = {
     PropTypes,
@@ -10,11 +11,7 @@ const T = {
 
     randomPassword: length => Math.random().toString(36).slice(-length),
 
-    debug: (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'),
-
-    isBKer: (email) => { return email.endsWith('@hcmut.edu.vn') || email.endsWith('@oisp.edu.vn') },
-
-    url: (url) => process.env.REACT_APP_API_URL + url + (url.indexOf('?') === -1 ? '?t=' : '&t=') + new Date().getTime(),
+    isDebug: (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'),
 
     download: (url, fileName) => {
         let link = document.createElement('a');
@@ -52,13 +49,26 @@ const T = {
 
     numberDisplay: number => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
 
+    NOTIFY_TYPE: {
+        danger: 'danger',
+        success: 'success',
+        info: 'info',
+        warning: 'warning'
+    },
     notify: (message, type) => $.notify({ message }, { type, placement: { from: 'bottom' }, z_index: 2000 }),
 
-    alert: (text, icon, button, timer) => {
-        let options = {};
+    ALERT_ICON: {
+        warning: 'warning',
+        error: 'error',
+        success: 'success',
+        info: 'info',
+        question: 'question'
+    },
+    alert: (text, icon, isShowButton, timer) => {
+        let options = { text };
         if (icon) {
             if (typeof icon == 'boolean') {
-                options.button = icon;
+                options.showConfirmButton = icon;
                 options.icon = 'success';
                 if (timer) options.timer = timer;
             }
@@ -67,43 +77,39 @@ const T = {
                 options.icon = 'success';
             }
             else options.icon = icon;
-
-            if (button !== undefined) {
-                if (typeof button == 'number') {
-                    options.timer = options.button;
-                    options.button = true;
+            if (isShowButton !== undefined) {
+                if (typeof isShowButton == 'number') {
+                    options.timer = options.showConfirmButton;
+                    options.showConfirmButton = true;
                 }
                 else {
-                    options.button = button;
+                    options.showConfirmButton = isShowButton;
                     if (timer) options.timer = timer;
                 }
             }
-            else options.button = true;
+            else options.showConfirmButton = true;
         }
         else {
             options.icon = 'success';
-            options.button = true;
+            options.showConfirmButton = true;
         }
-        options.text = text;
-        // swal2(options);
+        Swal.fire(options);
     },
 
-    confirm: (title, html, icon, dangerMode, done) => {
+    confirm: (title, html, icon, isFocusCancel, done) => {
         if (typeof icon == 'function') {
             done = icon;
             icon = 'warning';
-            dangerMode = false;
+            isFocusCancel = false;
         } else if (typeof icon == 'boolean') {
-            done = dangerMode;
-            dangerMode = icon;
+            done = isFocusCancel;
+            isFocusCancel = icon;
             icon = 'warning';
-        } else if (typeof dangerMode == 'function') {
-            done = dangerMode;
-            dangerMode = false;
+        } else if (typeof isFocusCancel == 'function') {
+            done = isFocusCancel;
+            isFocusCancel = false;
         }
-        var content = document.createElement('div');
-        content.innerHTML = html;
-        // swal2({ icon, title, content, dangerMode, buttons: { cancel: true, confirm: true }, }).then(done);
+        Swal.fire({ icon, title, html, focusCancel: isFocusCancel, showConfirmButton: true, showCancelButton: true, }).then(done);
     },
 
     dateFormat: { format: 'dd/mm/yyyy hh:ii', autoclose: true, todayBtn: true },
@@ -121,9 +127,27 @@ const T = {
         }
     },
 
+    get2: x => ('0' + x).slice(-2)
 };
 
-// T.socket = T.debug ? io() : io.connect(T.rootUrl, { secure: true });
+['get', 'post', 'put', 'delete'].forEach(method => T[method] = (url, data, success, error) => {
+    url = process.env.REACT_APP_API_URL + url + (url.indexOf('?') === -1 ? '?t=' : '&t=') + new Date().getTime()
+    if (typeof data === 'function') {
+        error = success;
+        success = data;
+    }
+    $.ajax({
+        url,
+        data,
+        dataType: 'json',
+        type: method.toUpperCase(),
+        success: data => success && success(data),
+        error: data => {
+            console.error('Ajax (' + method.toUpperCase() + ' => ' + url + ') has error. Error:', data);
+            error && error(data)
+        }
+    })
+});
 
 T.language = texts => {
     let lg = T.cookie('language');
@@ -155,8 +179,8 @@ T.language.getMonth = () => ({
     en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 }[T.language()]);
 
+// T.socket = T.debug ? io() : io.connect(T.rootUrl, { secure: true });
 
-T.get2 = x => ('0' + x).slice(-2);
 // T.socket.on('connect', () => {
 //     if (T.connected === 0) {
 //         T.connected = true;
@@ -169,58 +193,6 @@ T.get2 = x => ('0' + x).slice(-2);
 //     T.socket.on('reconnect_attempt', attemptNumber => T.connected = -attemptNumber);
 //     T.socket.on('debug', type => (type === 'reload') && window.location.reload());
 // }
-
-['get', 'post', 'put', 'delete'].forEach(method => T[method] = (url, data, success, error) => {
-    url = T.url(url);
-    if (typeof data === 'function') {
-        error = success;
-        success = data;
-    }
-    $.ajax({
-        url,
-        data,
-        dataType: 'json',
-        type: method.toUpperCase(),
-        success: data => success && success(data),
-        error: data => {
-            console.error('Ajax (' + method.toUpperCase() + ' => ' + url + ') has error. Error:', data);
-            error && error(data)
-        }
-    })
-});
-
-
-// $(() => {
-//     $(window).resize(T.onResize);
-//     setTimeout(T.onResize, 100);
-// });
-
-// T.ftcoAnimate = () => {
-//     $('.ftco-animate').waypoint(function (direction) {
-//         if (direction === 'down' && !$(this.element).hasClass('ftco-animated')) {
-//             $(this.element).addClass('item-animate');
-//             setTimeout(function () {
-//                 $('body .ftco-animate.item-animate').each(function (k) {
-//                     const el = $(this);
-//                     setTimeout(function () {
-//                         var effect = el.data('animate-effect');
-//                         if (effect === 'fadeIn') {
-//                             el.addClass('fadeIn ftco-animated');
-//                         } else if (effect === 'fadeInLeft') {
-//                             el.addClass('fadeInLeft ftco-animated');
-//                         } else if (effect === 'fadeInRight') {
-//                             el.addClass('fadeInRight ftco-animated');
-//                         } else {
-//                             el.addClass('fadeInUp ftco-animated');
-//                         }
-//                         el.removeClass('item-animate');
-//                     }, k * 50, 'easeInOutExpo');
-//                 });
-
-//             }, 100);
-//         }
-//     }, { offset: '95%' });
-// };
 
 export default T;
 

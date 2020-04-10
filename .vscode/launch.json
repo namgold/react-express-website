@@ -5,6 +5,10 @@
             "type": "node",
             "request": "launch",
             "name": "Debug",
+            "runtimeArgs": [
+                "-r",
+                "dotenv/config"
+            ],
             "windows": {
                 "program": "${workspaceFolder}\\src\\bin\\www"
             },

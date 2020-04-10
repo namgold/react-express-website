@@ -20,7 +20,7 @@
             "promptOnClose": false
         },
         {
-            "label": "nodemon",
+            "label": "API",
             "type": "npm",
             "script": "nodemon",
             "problemMatcher": [],
@@ -34,7 +34,6 @@
                 "group": "groupA"
             },
             "promptOnClose": false,
-            "dependsOrder": "parallel"
         },
         {
             "label": "RUN",

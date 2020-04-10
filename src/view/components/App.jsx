@@ -4,13 +4,12 @@ import '../css/App.css';
 import T from '../js/common';
 
 class App extends React.Component {
-    state = { apiMessage: null }
 
-    componentDidMount() {
-        T.get("/", data =>
-            this.setState({ apiMessage: "API connect success" }),
-            error =>
-                this.setState({ apiMessage: "API connect fail" }));
+    testConnect(e) {
+        e.preventDefault();
+        T.get("/",
+            data => T.notify("API connect success", T.NOTIFY_TYPE.success),
+            error => T.notify("API connect fail", T.NOTIFY_TYPE.danger));
     }
 
     render() {
@@ -19,8 +18,9 @@ class App extends React.Component {
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <p>Edit <code>src/view/components/App.js</code> and save to reload.</p>
-                    {this.state.apiMessage ? <p>{this.state.apiMessage}</p> : null}
                     <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">Learn React</a>
+                    <br/>
+                    <button className='btn btn-success' onClick={this.testConnect}>Test API connection</button>
                 </header>
             </div>
         );
