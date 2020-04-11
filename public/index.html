@@ -7,10 +7,6 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/img/logo192.png" />
-    <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>React App</title>
     <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/css/bootstrap.min.css">
@@ -19,12 +15,13 @@
             border: 10px solid #f3f3f3;
             border-radius: 50%;
             border-top: 10px solid #3498db;
-            width: 30px;
-            height: 30px;
+            width: 60px;
+            height: 60px;
             -webkit-animation: spin 2s linear infinite; /* Safari */
             animation: spin 2s linear infinite;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: 1rem;
         }
         /* Safari */
         @-webkit-keyframes spin {
@@ -39,14 +36,17 @@
 </head>
 <body>
     <div id="root">
-        <div style='height: 100vh; display: flex; justify-content: center; align-items: center;'>
-            <div>
-                <div class="loading-spinner"></div>
-                <h1>App is loading...</h1>
-            </div>
-        </div>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <noscript><h1>You need to enable JavaScript to run this app.</h1></noscript>
     </div>
+    <script>
+        document.body.children[0].innerHTML = `
+            <div style="height: 100vh; display: flex; justify-content: center; align-items: center;">
+                <div>
+                    <div class="loading-spinner"></div>
+                    <h1>App is loading...</h1>
+                </div>
+            </div>`;
+    </script>
     <script src="%PUBLIC_URL%/js/jquery-3.4.1.min.js"></script>
     <script src="%PUBLIC_URL%/js/bootstrap.min.js"></script>
     <script src="%PUBLIC_URL%/js/bootstrap-notify.min.js"></script>
