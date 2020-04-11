@@ -17,11 +17,13 @@ Project included:
 - Connected React - Express app
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - [React Loadable](https://github.com/jamiebuilds/react-loadable)
+- [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction)
+- [Bootstrap Notify](http://bootstrap-notify.remabledesigns.com/)
 - [JQuery](https://jquery.com)
 - [lodash](https://lodash.com)
 - [swal2](https://sweetalert2.github.io)
 - [nodemon](https://www.npmjs.com/package/nodemon)
-- Many ultility function ready to used
+- Many ultility functions ready to used
 - .env config file
 - Ready to used vscode config
 

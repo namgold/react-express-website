@@ -50,33 +50,33 @@ const T = {
     numberDisplay: number => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
 
     NOTIFY_TYPE: {
-        danger: 'danger',
-        success: 'success',
-        info: 'info',
-        warning: 'warning'
+        DANGER: 'danger',
+        SUCCESS: 'success',
+        INFO: 'info',
+        WARNING: 'warning'
     },
     notify: (message, type) => $.notify({ message }, { type, placement: { from: 'bottom' }, z_index: 2000 }),
 
-    ALERT_ICON: {
-        warning: 'warning',
-        error: 'error',
-        success: 'success',
-        info: 'info',
-        question: 'question'
+    ALERT_TYPE: {
+        WARNING: 'warning',
+        ERROR: 'error',
+        SUCCESS: 'success',
+        INFO: 'info',
+        QUESTION: 'question'
     },
-    alert: (text, icon, isShowButton, timer) => {
+    alert: (text, type, isShowButton, timer) => {
         let options = { text };
-        if (icon) {
-            if (typeof icon == 'boolean') {
-                options.showConfirmButton = icon;
+        if (type) {
+            if (typeof type == 'boolean') {
+                options.showConfirmButton = type;
                 options.icon = 'success';
                 if (timer) options.timer = timer;
             }
-            else if (typeof icon == 'number') {
-                options.timer = icon;
+            else if (typeof type == 'number') {
+                options.timer = type;
                 options.icon = 'success';
             }
-            else options.icon = icon;
+            else options.icon = type;
             if (isShowButton !== undefined) {
                 if (typeof isShowButton == 'number') {
                     options.timer = options.showConfirmButton;
@@ -96,20 +96,20 @@ const T = {
         Swal.fire(options);
     },
 
-    confirm: (title, html, icon, isFocusCancel, done) => {
-        if (typeof icon == 'function') {
-            done = icon;
-            icon = 'warning';
+    confirm: (title, html, type, isFocusCancel, done) => {
+        if (typeof type == 'function') {
+            done = type;
+            type = 'warning';
             isFocusCancel = false;
-        } else if (typeof icon == 'boolean') {
+        } else if (typeof type == 'boolean') {
             done = isFocusCancel;
-            isFocusCancel = icon;
-            icon = 'warning';
+            isFocusCancel = type;
+            type = 'warning';
         } else if (typeof isFocusCancel == 'function') {
             done = isFocusCancel;
             isFocusCancel = false;
         }
-        Swal.fire({ icon, title, html, focusCancel: isFocusCancel, showConfirmButton: true, showCancelButton: true, }).then(done);
+        Swal.fire({ icon: type, title, html, focusCancel: isFocusCancel, showConfirmButton: true, showCancelButton: true, }).then(done);
     },
 
     dateFormat: { format: 'dd/mm/yyyy hh:ii', autoclose: true, todayBtn: true },
@@ -144,40 +144,10 @@ const T = {
         success: data => success && success(data),
         error: data => {
             console.error('Ajax (' + method.toUpperCase() + ' => ' + url + ') has error. Error:', data);
-            error && error(data)
+            error && error(data.responseJSON)
         }
     })
 });
-
-T.language = texts => {
-    let lg = T.cookie('language');
-    if (lg == null || (lg !== 'vi' && lg !== 'en')) lg = 'vi';
-    return texts ? (texts[lg] ? texts[lg] : {}) : lg;
-};
-T.language.next = () => {
-    const language = T.cookie('language');
-    return (language == null || language === 'en') ? 'vi' : 'en';
-};
-T.language.current = () => {
-    const language = T.cookie('language');
-    return (language == null || language === 'en') ? 'en' : 'vi';
-};
-T.language.switch = () => {
-    const language = T.language.next();
-    T.cookie('language', language);
-    return { language };
-};
-T.language.parse = (text, getAll) => {
-    let obj = {};
-    try { obj = JSON.parse(text) } catch { };
-    if (obj.vi == null) obj.vi = text;
-    if (obj.en == null) obj.en = text;
-    return getAll ? obj : obj[T.language()];
-};
-T.language.getMonth = () => ({
-    vi: ['Tháng một', 'Tháng hai', 'Tháng ba', 'Tháng tư', 'Tháng năm', 'Tháng sáu', 'Tháng bảy', 'Tháng tám', 'Tháng chín', 'Tháng mười', 'Tháng mười một', 'Tháng mười hai'],
-    en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-}[T.language()]);
 
 // T.socket = T.debug ? io() : io.connect(T.rootUrl, { secure: true });
 
@@ -195,7 +165,6 @@ T.language.getMonth = () => ({
 // }
 
 export default T;
-
 
 /*eslint no-extend-native: ["error", { "exceptions": ["String", "Date", "Array"] }]*/
 

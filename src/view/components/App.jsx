@@ -8,8 +8,8 @@ class App extends React.Component {
     testConnect(e) {
         e.preventDefault();
         T.get("/",
-            data => T.notify("API connect success", T.NOTIFY_TYPE.success),
-            error => T.notify("API connect fail", T.NOTIFY_TYPE.danger));
+            data => T.notify("API connect success", T.NOTIFY_TYPE.SUCCESS),
+            error => T.notify("API connect fail", T.NOTIFY_TYPE.DANGER));
     }
 
     render() {

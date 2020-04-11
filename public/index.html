@@ -13,17 +13,7 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>React App</title>
-</head>
-<body>
-    <div id="root">
-        <div style='height: 100vh; display: flex; justify-content: center; align-items: center;'>
-            <div>
-                <div class="loading-spinner"></div>
-                <h1>App is loading...</h1>
-            </div>
-        </div>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-    </div>
+    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/css/bootstrap.min.css">
     <style>
         .loading-spinner {
             border: 10px solid #f3f3f3;
@@ -38,15 +28,25 @@
         }
         /* Safari */
         @-webkit-keyframes spin {
-          0% { -webkit-transform: rotate(0deg); }
-          100% { -webkit-transform: rotate(360deg); }
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
         }
         @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="root">
+        <div style='height: 100vh; display: flex; justify-content: center; align-items: center;'>
+            <div>
+                <div class="loading-spinner"></div>
+                <h1>App is loading...</h1>
+            </div>
+        </div>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+    </div>
     <script src="%PUBLIC_URL%/js/jquery-3.4.1.min.js"></script>
     <script src="%PUBLIC_URL%/js/bootstrap.min.js"></script>
     <script src="%PUBLIC_URL%/js/bootstrap-notify.min.js"></script>
