@@ -6,6 +6,7 @@
     "scripts": {
         "nodemon": "nodemon -r dotenv/config src/bin/www",
         "webpack": "node scripts/start.js",
+        "dev": "start /B npm run webpack & start npm run nodemon",
         "build": "node scripts/build.js",
         "test": "node scripts/test.js"
     },
