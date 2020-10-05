@@ -6,6 +6,7 @@
     "scripts": {
         "nodemon": "nodemon -r dotenv/config src/bin/www",
         "webpack": "node scripts/start.js",
+        "dev": "start /B npm run webpack & start npm run nodemon",
         "build": "node scripts/build.js",
         "test": "node scripts/test.js"
     },
@@ -124,19 +125,6 @@
             "^.+\\.module\\.(css|sass|scss)$"
         ],
         "modulePaths": [
-            "Z:\\Javascript\\react-express-website\\node_modules\\.pnpm\\registry.npmjs.org\\react-scripts\\3.4.1\\node_modules\\react-scripts\\bin\\react-scripts.js\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\.pnpm\\registry.npmjs.org\\react-scripts\\3.4.1\\node_modules\\react-scripts\\bin\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\.pnpm\\registry.npmjs.org\\react-scripts\\3.4.1\\node_modules\\react-scripts\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\.pnpm\\registry.npmjs.org\\react-scripts\\3.4.1\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\.pnpm\\registry.npmjs.org\\react-scripts\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\.pnpm\\registry.npmjs.org\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\.pnpm\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules",
-            "Z:\\Javascript\\node_modules",
-            "Z:\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\react-scripts\\bin\\react-scripts.js\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\react-scripts\\bin\\node_modules",
-            "Z:\\Javascript\\react-express-website\\node_modules\\react-scripts\\node_modules"
         ],
         "moduleNameMapper": {
             "^react-native$": "react-native-web",
