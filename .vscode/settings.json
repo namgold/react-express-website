@@ -2,5 +2,6 @@
     "files.exclude": {
         "config": true,
         "scripts": true
-    }
+    },
+    "eslint.enable": true
 }
